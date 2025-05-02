@@ -2026,21 +2026,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@heroicons/react@npm:^2.1.1":
+"@heroicons/react@npm:2.2.0, @heroicons/react@npm:^2.1.1":
   version: 2.2.0
   resolution: "@heroicons/react@npm:2.2.0"
   peerDependencies:
     react: ">= 16 || ^19.0.0-rc"
   checksum: ff4dbfa98dacc41f86db82be9102d0c2cd0b8652b428f0b49ffd2580bee8f36fca43937a3d3d5e8f209c7303f5317a32163c018dfa13a3730d79dec43addac93
-  languageName: node
-  linkType: hard
-
-"@heroicons/react@npm:~2.1.5":
-  version: 2.1.5
-  resolution: "@heroicons/react@npm:2.1.5"
-  peerDependencies:
-    react: ">= 16"
-  checksum: 1c793f96443580416eccdb60d72c19f640ce068a95f8568bfe8176c6e8ef1318f3d4d4caa8656b571002fe3a7f2d989d6812429fd6bca4bdff641e4b8998c0cd
   languageName: node
   linkType: hard
 
@@ -4131,21 +4122,21 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@se-2/nextjs@workspace:packages/nextjs"
   dependencies:
-    "@heroicons/react": ~2.1.5
+    "@heroicons/react": 2.2.0
     "@privy-io/react-auth": latest
     "@rainbow-me/rainbowkit": 2.2.3
-    "@tanstack/react-query": ~5.59.15
+    "@tanstack/react-query": 5.74.11
     "@trivago/prettier-plugin-sort-imports": ~4.3.0
     "@types/node": ~18.19.50
     "@types/react": ~19.0.7
-    "@uniswap/sdk-core": ~5.8.2
-    "@uniswap/v2-sdk": ~4.6.1
+    "@uniswap/sdk-core": 7.7.2
+    "@uniswap/v2-sdk": 4.15.2
     abitype: 1.0.6
     autoprefixer: ~10.4.20
     bgipfs: ~0.0.12
-    blo: ~1.2.0
+    blo: 2.0.0
     burner-connector: 0.0.12
-    daisyui: 4.12.10
+    daisyui: 5.0.35
     eslint: ~9.23.0
     eslint-config-next: ~15.2.3
     eslint-config-prettier: ~10.1.1
@@ -5165,21 +5156,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/query-core@npm:5.59.20":
-  version: 5.59.20
-  resolution: "@tanstack/query-core@npm:5.59.20"
-  checksum: ed836033c7f34a61e7f152da1067ec170e36e861dc591e2a068f73918bcc641bb50ce90dc3b8d12e047f63f70b2842f72e3328d649c841f5c4ea51fdb95e454b
+"@tanstack/query-core@npm:5.74.9":
+  version: 5.74.9
+  resolution: "@tanstack/query-core@npm:5.74.9"
+  checksum: d2c3459ba57bbd946dd5996b267ccf0afedc0fbc55ade6f152201382a14c895b1ba676bbef682b6472c53c2672b98daf67f9f34d2f68e3a8b55f626071e47179
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:~5.59.15":
-  version: 5.59.20
-  resolution: "@tanstack/react-query@npm:5.59.20"
+"@tanstack/react-query@npm:5.74.11":
+  version: 5.74.11
+  resolution: "@tanstack/react-query@npm:5.74.11"
   dependencies:
-    "@tanstack/query-core": 5.59.20
+    "@tanstack/query-core": 5.74.9
   peerDependencies:
     react: ^18 || ^19
-  checksum: 2f4740f13dc9cbbf3c4175ac2e4e2788d2df8643940dfd9cc62c8c3d7c8842b2aeda0f58b99cdd2d525c0c78d759a1adfb3118599ab64bd3ce7ce4f027ee6f6b
+  checksum: 97426a1ff2d75267bc790dee70473ec30daee3082eec2d12e43a5bcbef9a9d8286e49089d403cc125cbb76d5722d0e80a6bb40e88e5efc4bee95a0271db31740
   languageName: node
   linkType: hard
 
@@ -5533,9 +5524,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@uniswap/sdk-core@npm:^5.9.0":
-  version: 5.9.0
-  resolution: "@uniswap/sdk-core@npm:5.9.0"
+"@uniswap/sdk-core@npm:7.7.2, @uniswap/sdk-core@npm:^7.7.1":
+  version: 7.7.2
+  resolution: "@uniswap/sdk-core@npm:7.7.2"
   dependencies:
     "@ethersproject/address": ^5.0.2
     "@ethersproject/bytes": ^5.7.0
@@ -5546,37 +5537,20 @@ __metadata:
     jsbi: ^3.1.4
     tiny-invariant: ^1.1.0
     toformat: ^2.0.0
-  checksum: 2bb52a473053f50da68254a9521f907fd34c3eb1c67cda9c0cbe1302da245fe5378a31afdad281a20618ec7f4b9be934c3badf8704a9ab2ae5296f90ae4725a8
+  checksum: 1ef25d96e3249909f5642ec048b175fc744f15e395a5e58f5e2b654bd01154e6de6945f5219cb7ab0d86cdffe9ab1a743251ad96f1df9cd48d7ec49d694f790f
   languageName: node
   linkType: hard
 
-"@uniswap/sdk-core@npm:~5.8.2":
-  version: 5.8.5
-  resolution: "@uniswap/sdk-core@npm:5.8.5"
-  dependencies:
-    "@ethersproject/address": ^5.0.2
-    "@ethersproject/bytes": ^5.7.0
-    "@ethersproject/keccak256": 5.7.0
-    "@ethersproject/strings": 5.7.0
-    big.js: ^5.2.2
-    decimal.js-light: ^2.5.0
-    jsbi: ^3.1.4
-    tiny-invariant: ^1.1.0
-    toformat: ^2.0.0
-  checksum: a2d8658b5879b885153417f7ff3956d1821d3177ce7ada360f4ad27991b90ef1c11757a1462060633e37054b50980c7890e9e11b9dc3b5461a931f2265239871
-  languageName: node
-  linkType: hard
-
-"@uniswap/v2-sdk@npm:~4.6.1":
-  version: 4.6.2
-  resolution: "@uniswap/v2-sdk@npm:4.6.2"
+"@uniswap/v2-sdk@npm:4.15.2":
+  version: 4.15.2
+  resolution: "@uniswap/v2-sdk@npm:4.15.2"
   dependencies:
     "@ethersproject/address": ^5.0.2
     "@ethersproject/solidity": ^5.0.9
-    "@uniswap/sdk-core": ^5.9.0
+    "@uniswap/sdk-core": ^7.7.1
     tiny-invariant: ^1.1.0
     tiny-warning: ^1.0.3
-  checksum: fb051144569018316423afc8413fc06999e0239c6a98fffa0c7877a6b49bd63ad04978170c7cb3dae1b0a2e3acb9f2905751631d8d4abebf667cae4ff7940de5
+  checksum: 0484786ef416a249afb219e6a6868ba7cc3591aafb49d3fc08e60b8cba6f0267214a60f4eca25c0bb347b17d3ef3b0e88ba32791cfa48b771d1b2d574a17b76b
   languageName: node
   linkType: hard
 
@@ -7139,10 +7113,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"blo@npm:~1.2.0":
-  version: 1.2.0
-  resolution: "blo@npm:1.2.0"
-  checksum: be7dc5f3047d538c0038b469c309440e5b7de872ee811cc7ca97005b6b534a01dbf461150145f2f09524aeda6923197ea31290fbe9865cb8cb32152b3caf3dc7
+"blo@npm:2.0.0":
+  version: 2.0.0
+  resolution: "blo@npm:2.0.0"
+  checksum: adf68169bcb5fa408029805a933b28e9fa72f0b276daef335a9ff3a90ba8e1fcd7ab55907c43c64410a1741fc1badc6721bd7609f16f0e52c586dd98db99785f
   languageName: node
   linkType: hard
 
@@ -7893,16 +7867,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"css-selector-tokenizer@npm:^0.8":
-  version: 0.8.0
-  resolution: "css-selector-tokenizer@npm:0.8.0"
-  dependencies:
-    cssesc: ^3.0.0
-    fastparse: ^1.1.2
-  checksum: 1eb7ca7d2c21ede700a0fab7df4547198431c30ba62663d81a566a8abe6ab7524f627ce6c0bde63f34917e199b73be4081e449bd8faf107d155766204082aa0a
-  languageName: node
-  linkType: hard
-
 "css-to-react-native@npm:3.2.0":
   version: 3.2.0
   resolution: "css-to-react-native@npm:3.2.0"
@@ -7937,13 +7901,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"culori@npm:^3":
-  version: 3.3.0
-  resolution: "culori@npm:3.3.0"
-  checksum: 7091ab572ed49222a25872a0c2c350340b96dac1c3237a7b58a93bfb02d11c64d68c585c32f91985a563b3d52402d16722e33a00087456287df28e3db5d99f13
-  languageName: node
-  linkType: hard
-
 "dag-jose@npm:^5.0.0":
   version: 5.1.1
   resolution: "dag-jose@npm:5.1.1"
@@ -7954,15 +7911,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"daisyui@npm:4.12.10":
-  version: 4.12.10
-  resolution: "daisyui@npm:4.12.10"
-  dependencies:
-    css-selector-tokenizer: ^0.8
-    culori: ^3
-    picocolors: ^1
-    postcss-js: ^4
-  checksum: 506e7545502b75f43995f6fd460c907e95af03b12d750b49dbec14338d81d91b540cded0179004c87d2a326d024500b8529a456f70819bff24011b269f76aeec
+"daisyui@npm:5.0.35":
+  version: 5.0.35
+  resolution: "daisyui@npm:5.0.35"
+  checksum: 9df00cba4c8a17aca1b8375231e4eaf6184f789006692ddef31cb19322d35287aa222af30aa16541a9866737c9e2ebd02ce1faa1f064908e1c352179eb6f76ab
   languageName: node
   linkType: hard
 
@@ -9564,13 +9516,6 @@ __metadata:
   version: 1.0.16
   resolution: "fastest-levenshtein@npm:1.0.16"
   checksum: a78d44285c9e2ae2c25f3ef0f8a73f332c1247b7ea7fb4a191e6bb51aa6ee1ef0dfb3ed113616dcdc7023e18e35a8db41f61c8d88988e877cf510df8edafbc71
-  languageName: node
-  linkType: hard
-
-"fastparse@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "fastparse@npm:1.1.2"
-  checksum: c4d199809dc4e8acafeb786be49481cc9144de296e2d54df4540ccfd868d0df73afc649aba70a748925eb32bbc4208b723d6288adf92382275031a8c7e10c0aa
   languageName: node
   linkType: hard
 
@@ -13492,7 +13437,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"picocolors@npm:^1, picocolors@npm:^1.0.0, picocolors@npm:^1.1.1":
+"picocolors@npm:^1.0.0, picocolors@npm:^1.1.1":
   version: 1.1.1
   resolution: "picocolors@npm:1.1.1"
   checksum: e1cf46bf84886c79055fdfa9dcb3e4711ad259949e3565154b004b260cd356c5d54b31a1437ce9782624bf766272fe6b0154f5f0c744fb7af5d454d2b60db045
@@ -13656,7 +13601,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss-js@npm:^4, postcss-js@npm:^4.0.1":
+"postcss-js@npm:^4.0.1":
   version: 4.0.1
   resolution: "postcss-js@npm:4.0.1"
   dependencies:

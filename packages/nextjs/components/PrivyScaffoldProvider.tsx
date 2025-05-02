@@ -1,6 +1,6 @@
 "use client";
 
-import PropsWithChildren from "react";
+import { PropsWithChildren } from "react";
 import { PrivyProvider } from "@privy-io/react-auth";
 
 export const PrivyScaffoldProvider = ({ children }: PropsWithChildren) => {
