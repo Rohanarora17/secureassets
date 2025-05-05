@@ -5,6 +5,8 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "../interfaces/IYieldProtocolAdapter.sol";
+import "../interfaces/IAaveProtocolDataProvider.sol";
+import "./BaseAdapter.sol";
 
 // Aave V3 Pool interface defined outside the contract for cleaner code
 interface IAavePool {
@@ -31,20 +33,11 @@ interface IAavePool {
     );
 }
 
-// Aave Protocol Data Provider interface
-interface IAaveProtocolDataProvider {
-    function getReserveTokensAddresses(address asset) external view returns (
-        address aTokenAddress,
-        address stableDebtTokenAddress,
-        address variableDebtTokenAddress
-    );
-}
-
 /**
  * @title AaveV3Adapter
  * @dev Adapter for Aave V3 protocol
  */
-contract AaveV3Adapter is IYieldProtocolAdapter, Ownable {
+contract AaveV3Adapter is BaseAdapter {
     using SafeERC20 for IERC20;
 
     // Aave V3 Pool address
@@ -68,7 +61,7 @@ contract AaveV3Adapter is IYieldProtocolAdapter, Ownable {
      * @param _aavePool Address of the Aave V3 Pool contract
      * @param _dataProvider Address of the Aave Protocol Data Provider
      */
-    constructor(address _aavePool, address _dataProvider) Ownable(msg.sender) {
+    constructor(address _aavePool, address _dataProvider) {
         require(_aavePool != address(0), "Invalid Aave pool address");
         require(_dataProvider != address(0), "Invalid data provider address");
         
@@ -99,7 +92,7 @@ contract AaveV3Adapter is IYieldProtocolAdapter, Ownable {
         // Approve Aave to spend the assets
         IERC20(asset).approve(aavePool, amount);
         
-        // Supply to Aave
+        // Supply to Aave on behalf of msg.sender
         IAavePool(aavePool).supply(asset, amount, msg.sender, referralCode);
         
         emit Deposited(asset, amount);
@@ -118,6 +111,16 @@ contract AaveV3Adapter is IYieldProtocolAdapter, Ownable {
         require(supportsAsset(asset), "Asset not supported by Aave");
         require(amount > 0, "Amount must be greater than 0");
         
+        // Get aToken address
+        address aToken = getDepositToken(asset);
+        require(aToken != address(0), "Invalid aToken address");
+        
+        // Transfer aTokens from msg.sender to this contract
+        IERC20(aToken).safeTransferFrom(msg.sender, address(this), amount);
+        
+        // Approve Aave to spend aTokens
+        IERC20(aToken).approve(aavePool, amount);
+        
         // Withdraw from Aave
         uint256 withdrawn = IAavePool(aavePool).withdraw(asset, amount, to);
         
@@ -134,13 +137,15 @@ contract AaveV3Adapter is IYieldProtocolAdapter, Ownable {
     function getAPY(address asset) external view override returns (uint256) {
         require(supportsAsset(asset), "Asset not supported by Aave");
         
-        // Get liquidity rate from Aave
-        (,,,,,,,,uint256 liquidityRate,,,,,,,,) = IAavePool(aavePool).getReserveData(asset);
+        // Get liquidity rate from Aave Protocol Data Provider
+        (,, uint128 liquidityRate,,,,,,,,,,) = IAaveProtocolDataProvider(dataProvider).getReserveData(asset);
         
-        // Convert to basis points (Aave rates are in ray units: 10^27)
-        // APY = ((1 + rate/secondsPerYear)^secondsPerYear) - 1
-        // For small rates, we can approximate: APY ≈ rate
-        return liquidityRate / 1e25; // Convert ray (10^27) to basis points (1% = 100)
+        // Convert from ray (10^27) to basis points (1% = 100)
+        // Aave returns the rate in ray units (10^27)
+        // We want to convert it to basis points (1% = 100)
+        // So we multiply by 100 and divide by 10^27
+        // For example, 3e27 (3 ray) = 3% APY = 300 basis points
+        return (liquidityRate * 100) / 1e27;
     }
     
     /**
@@ -199,25 +204,25 @@ contract AaveV3Adapter is IYieldProtocolAdapter, Ownable {
      * @dev Update the Aave pool address
      * @param _aavePool New Aave pool address
      */
-    function setAavePool(address _aavePool) external onlyOwner {
+    function updateAavePool(address _aavePool) external onlyOwner {
         require(_aavePool != address(0), "Invalid Aave pool address");
         aavePool = _aavePool;
     }
     
     /**
-     * @dev Update the Aave Data Provider address
+     * @dev Update the data provider address
      * @param _dataProvider New data provider address
      */
-    function setDataProvider(address _dataProvider) external onlyOwner {
+    function updateDataProvider(address _dataProvider) external onlyOwner {
         require(_dataProvider != address(0), "Invalid data provider address");
         dataProvider = _dataProvider;
     }
     
     /**
-     * @dev Set the referral code for Aave
+     * @dev Update the referral code
      * @param _referralCode New referral code
      */
-    function setReferralCode(uint16 _referralCode) external onlyOwner {
+    function updateReferralCode(uint16 _referralCode) external onlyOwner {
         referralCode = _referralCode;
     }
     

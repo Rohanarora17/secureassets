@@ -3,6 +3,7 @@ pragma solidity ^0.8.20;
 
 import "../adapters/AaveV3Adapter.sol";
 import "../interfaces/IYieldProtocolAdapter.sol";
+import "../vaults/ModularYieldVault.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
@@ -112,7 +113,9 @@ contract ModularVaultFactory is Ownable {
         
         // Register the adapter
         adapter = address(newAdapter);
-        registerAdapter("Aave V3", adapter);
+        protocolAdapters["Aave V3"] = adapter;
+        supportedProtocols.push("Aave V3");
+        emit AdapterRegistered("Aave V3", adapter);
         
         return adapter;
     }

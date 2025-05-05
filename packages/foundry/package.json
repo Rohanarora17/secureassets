@@ -16,9 +16,14 @@
     "postinstall": "shx cp -n .env.example .env",
     "lint": "make lint",
     "test": "forge test",
-    "verify": "make verify RPC_URL=${1:-localhost}"
+    "verify": "make verify RPC_URL=${1:-localhost}",
+    "test:coverage": "forge coverage",
+    "deploy:local": "node scripts-js/deploy-local.js",
+    "deploy:sepolia": "forge script script/Deploy.s.sol:DeployScript --rpc-url $BASE_SEPOLIA_RPC_URL --broadcast --verify",
+    "deploy:mainnet": "forge script script/Deploy.s.sol:DeployScript --rpc-url $BASE_MAINNET_RPC_URL --broadcast --verify"
   },
   "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0",
     "dotenv": "~16.3.1",
     "envfile": "~6.18.0",
     "ethers": "~5.7.1",
@@ -27,6 +32,8 @@
     "toml": "~3.0.0"
   },
   "devDependencies": {
+    "@openzeppelin/contracts-upgradeable": "^5.0.0",
+    "prettier-plugin-solidity": "^1.1.0",
     "shx": "^0.3.4"
   }
 }
